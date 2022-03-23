@@ -9,6 +9,7 @@ int main()
     int size = 0;
     int i = 0;
     int j = 0;
+    int edges = 0;
 
     if ((file = fopen("input.txt", "r")) == NULL)
     {
@@ -44,6 +45,7 @@ int main()
             if (array[i][j] >= 1)
             {
                 fprintf(out, "%d -- %d;\n", i, j);
+                edges++;
             }
         }
     }
@@ -51,11 +53,10 @@ int main()
 
     fclose(out);
 
-    j = j - 1;
-    if(j > (( i - 1 )*( i - 2 )/ 2)){
-        printf("This is a linked graph. Edges: %d, peaks: %d \n", j, i);
+    if(edges > (( j - 1 )*( j - 2 )/ 2)){
+        printf("This is a linked graph. Edges: %d, peaks: %d \n", edges, j);
     }else{
-        printf("This is an unrelated graph. Edges: %d, peaks: %d \n", j, i);
+        printf("This is an unrelated graph. Edges: %d, peaks: %d \n", edges, j);
     }
 
     system("dot output.dot -Tpng -o image.png");
